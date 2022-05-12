@@ -47,8 +47,8 @@ class Training:
 
     def get_spent_calories(self) -> None:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError('Определите метод get_spent_calories в %s.'
-                                  % (self.__class__.__name__)
+        raise NotImplementedError(f'Определите метод get_spent_calories в '
+                                  f'{self.__class__.__name__}'
                                   )
 
     def show_training_info(self) -> InfoMessage:
@@ -82,7 +82,8 @@ class SportsWalking(Training):
     WEIGHT_MULTIPICATOR_2: float = 0.029
 
     def __init__(
-        self, action: int,
+        self,
+        action: int,
         duration: float,
         weight: float,
         height: float
@@ -106,7 +107,8 @@ class Swimming(Training):
     WEIGHT_MULTIPICATOR: float = 2
 
     def __init__(
-        self, action: int,
+        self,
+        action: int,
         duration: float,
         weight: float,
         length_pool: int,
@@ -140,7 +142,7 @@ def read_package(workout_type: str, data: list) -> Training:
         'WLK': SportsWalking
     }
     if workout_type not in read_workout_type:
-        raise NameError('Данный вид тренировки отсутствует в программе!')
+        raise KeyError('Данный вид тренировки отсутствует в программе!')
     return read_workout_type[workout_type](*data)
 
 
